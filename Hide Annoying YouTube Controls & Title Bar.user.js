@@ -23,7 +23,7 @@
     const KEY_CODE = 77 // 'm' key
 
 
-    // DO YOU ALLOW KEY 2? IF YES, true, if no, false.
+    // DO YOU ALLOW CTRL KEY? IF YES, true, if no, false.
     const ALLOW_CTRL_KEY = true
 
 
