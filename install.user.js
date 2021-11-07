@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Hide Annoying YouTube Controls & Title Bar
+// @name         YouTube Hide Annoying Controls & Title Bar
 // @description  Ctrl + M to HIDE/UNHIDE annoying YouTube Controls & Title Bar
 // @author       WEIRD :|
 // @match        *://www.youtube.com/*
@@ -7,88 +7,59 @@
 // @icon         https://www.google.com/s2/favicons?domain=youtube.com
 // ==/UserScript==
 
-(function() {
-    'use strict';
 
+/*
+DO YOU WISH TO CHANGE THE SHORTCUT KEY?
+Go to https://keycode.info to get the keycode value
+For Example: keycode 77 = 'm' key
+*/
+var KEY_CODE = 77
 
+/*
+DO YOU ALLOW CTRL KEY?
+If yes, true.
+If no, false.
+*/
+var ALLOW_CTRL_KEY = true
 
-
-
-
-
-
-
-    // Go to https://keycode.info to get keycode value
-    // CHANGE KEYS VALUE
-    const KEY_CODE = 77 // 'm' key
-
-
-    // DO YOU ALLOW CTRL KEY? IF YES, true, if no, false.
-    const ALLOW_CTRL_KEY = true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var HIDE = false;
-    document.addEventListener('keydown', function(evt) {
-        if (!evt) evt = event;
-        if (ALLOW_CTRL_KEY === false) {
-            if (evt.keyCode === KEY_CODE) {
-                if (HIDE === false) {
-                    HIDE = true;
-                    hide()
-                } else {
-                    HIDE = false;
-                    show()
-                }
-            }
-        } else {
-            if (evt.keyCode === KEY_CODE && evt.ctrlKey) {
-                if (HIDE === false) {
-                    HIDE = true;
-                    hide()
-                } else {
-                    HIDE = false;
-                    show()
-                }
+// DON'T CHANGE ANYTHING DOWN HERE IF YOU DON'T KNOW HOW TO CODE 🤓
+var HIDE = false
+var ELEMENTS = ['ytp-chrome-top', 'ytp-chrome-controls', 'ytp-gradient-top', 'ytp-gradient-bottom', 'ytp-progress-bar', 'ytp-progress-bar-container', 'ytp-pause-overlay ytp-scroll-min', 'annotation annotation-type-custom iv-branding', 'ytp-paid-content-overlay']
+document.addEventListener('keydown', (evt) => {
+    if (!evt) evt = event;
+    if (ALLOW_CTRL_KEY === false) {
+        if (evt.keyCode === KEY_CODE) {
+            if (HIDE === false) {
+                HIDE = true;
+                hide()
+            } else {
+                HIDE = false;
+                show()
             }
         }
-    })
-})();
-
+    } else {
+        if (evt.keyCode === KEY_CODE && evt.ctrlKey) {
+            if (HIDE === false) {
+                HIDE = true;
+                hide()
+            } else {
+                HIDE = false;
+                show()
+            }
+        }
+    }
+})
 function hide() {
-    document.getElementsByClassName('ytp-chrome-top')[0].style.visibility = 'hidden';
-    document.getElementsByClassName('ytp-chrome-controls')[0].style.visibility = 'hidden';
-    document.getElementsByClassName('ytp-gradient-top')[0].style.visibility = 'hidden';
-    document.getElementsByClassName('ytp-gradient-bottom')[0].style.visibility = 'hidden';
-    document.getElementsByClassName('ytp-progress-bar')[0].style.visibility = 'hidden';
-    document.getElementsByClassName('ytp-progress-bar-container')[0].style.visibility = 'hidden';
-    document.getElementsByClassName('ytp-pause-overlay ytp-scroll-min')[0].style.visibility = 'hidden';
-    if (document.getElementsByClassName('annotation annotation-type-custom iv-branding')) {document.getElementsByClassName('annotation annotation-type-custom iv-branding')[0].style.visibility = 'hidden'}
-    if (document.getElementsByClassName('ytp-paid-content-overlay')) {document.getElementsByClassName('ytp-paid-content-overlay')[0].style.visibility = 'hidden'}
+    ELEMENTS.forEach((elements) => {
+        if (document.getElementsByClassName(elements)) {
+            document.getElementsByClassName(elements)[0].style.visibility= 'hidden'
+        }
+    })
 }
-
 function show() {
-    document.getElementsByClassName('ytp-chrome-top')[0].style.visibility = 'visible';
-    document.getElementsByClassName('ytp-chrome-controls')[0].style.visibility = 'visible';
-    document.getElementsByClassName('ytp-gradient-top')[0].style.visibility = 'visible';
-    document.getElementsByClassName('ytp-gradient-bottom')[0].style.visibility = 'visible';
-    document.getElementsByClassName('ytp-progress-bar')[0].style.visibility = 'visible';
-    document.getElementsByClassName('ytp-progress-bar-container')[0].style.visibility = 'visible';
-    document.getElementsByClassName('ytp-pause-overlay ytp-scroll-min')[0].style.visibility = 'visible';
-    if (document.getElementsByClassName('annotation annotation-type-custom iv-branding')) {document.getElementsByClassName('annotation annotation-type-custom iv-branding')[0].style.visibility = 'visible'}
-    if (document.getElementsByClassName('ytp-paid-content-overlay')) {document.getElementsByClassName('ytp-paid-content-overlay')[0].style.visibility = 'visible'}
+    ELEMENTS.forEach((elements) => {
+        if (document.getElementsByClassName(elements)) {
+            document.getElementsByClassName(elements)[0].style.visibility= 'visible'
+        }
+    })
 }
