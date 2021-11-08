@@ -51,14 +51,14 @@ document.addEventListener('keydown', (evt) => {
 })
 function hide() {
     ELEMENTS.forEach((elements) => {
-        if (document.getElementsByClassName(elements)) {
+        if (document.getElementsByClassName(elements)[0] !== undefined) {
             document.getElementsByClassName(elements)[0].style.visibility= 'hidden'
         }
     })
 }
 function show() {
     ELEMENTS.forEach((elements) => {
-        if (document.getElementsByClassName(elements)) {
+        if (document.getElementsByClassName(elements)[0] !== undefined) {
             document.getElementsByClassName(elements)[0].style.visibility= 'visible'
         }
     })
