@@ -24,7 +24,7 @@ var ALLOW_CTRL_KEY = true
 
 // DON'T CHANGE ANYTHING DOWN HERE IF YOU DON'T KNOW HOW TO CODE 🤓
 var HIDE = false
-var ELEMENTS = ['ytp-chrome-top', 'ytp-chrome-controls', 'ytp-gradient-top', 'ytp-gradient-bottom', 'ytp-progress-bar', 'ytp-progress-bar-container', 'ytp-pause-overlay ytp-scroll-min', 'annotation annotation-type-custom iv-branding', 'ytp-paid-content-overlay']
+var ELEMENTS = ['ytp-chrome-top', 'ytp-chrome-bottom', 'ytp-chrome-controls', 'ytp-gradient-top', 'ytp-gradient-bottom', 'ytp-progress-bar', 'ytp-progress-bar-container', 'ytp-pause-overlay ytp-scroll-min', 'annotation annotation-type-custom iv-branding', 'ytp-paid-content-overlay']
 document.addEventListener('keydown', (evt) => {
     if (!evt) evt = event;
     if (ALLOW_CTRL_KEY === false) {
@@ -52,14 +52,18 @@ document.addEventListener('keydown', (evt) => {
 function hide() {
     ELEMENTS.forEach((elements) => {
         if (document.getElementsByClassName(elements)[0] !== undefined) {
-            document.getElementsByClassName(elements)[0].style.visibility= 'hidden'
+            for (var i = 0; i < document.getElementsByClassName(elements).length; i++){
+                document.getElementsByClassName(elements)[i].style.visibility= 'hidden';
+            }
         }
     })
 }
 function show() {
     ELEMENTS.forEach((elements) => {
         if (document.getElementsByClassName(elements)[0] !== undefined) {
-            document.getElementsByClassName(elements)[0].style.visibility= 'visible'
+            for (var i = 0; i < document.getElementsByClassName(elements).length; i++){
+                document.getElementsByClassName(elements)[i].style.visibility= 'visible';
+            }
         }
     })
 }
